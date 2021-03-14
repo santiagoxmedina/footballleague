@@ -28,6 +28,11 @@ class FootballRepository @Inject constructor(
         mTeams.addSource(mLocalDataSource.getTeams()) { newData ->
             setTeamsValue(Resource.success(newData))
         }
+        mTeams.addSource(mRemoteDataSource.getTeams()) { newData ->
+            newData?.data?.let {
+                mLocalDataSource.replace(it)
+            }
+        }
     }
 
     @MainThread

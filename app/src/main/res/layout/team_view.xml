@@ -15,11 +15,11 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="2dp"
-        app:cardCornerRadius="5dp"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginStart="@dimen/tiny_margin"
+        android:layout_marginEnd="@dimen/tiny_margin"
+        android:layout_marginBottom="@dimen/tiny_margin"
+        app:cardCornerRadius="@dimen/small_radius"
         android:onClick="@{()->action.onClick(team)}"
         android:layout_height="wrap_content">
 
@@ -53,8 +53,8 @@
 
             <ImageView
                 android:id="@+id/badge_image_view"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/thumbnail_size"
+                android:layout_height="@dimen/thumbnail_size"
                 android:contentDescription="@string/team_badge"
                 app:imageUrl="@{team.getBadge()}"
                 app:layout_constraintBottom_toBottomOf="parent"

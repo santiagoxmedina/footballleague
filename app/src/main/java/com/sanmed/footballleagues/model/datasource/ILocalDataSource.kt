@@ -6,4 +6,5 @@ import com.sanmed.footballleagues.view.team.ITeamView
 
 interface ILocalDataSource {
     fun getTeams(): LiveData<List<ITeamView>>
+    fun replace(teams: List<ITeamView>)
 }

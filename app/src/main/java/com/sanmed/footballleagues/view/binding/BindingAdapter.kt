@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sanmed.footballleagues.view.action.ActionClick
 import com.sanmed.footballleagues.view.loader.ImageLoader
 import com.sanmed.footballleagues.view.team.ITeamView
+import com.sanmed.footballleagues.view.team.TeamClick
 import com.sanmed.footballleagues.view.team.TeamViewHelper
 import com.sanmed.footballleagues.view.team.TeamViewListAdapter
 
@@ -23,7 +24,7 @@ object BindingAdapter {
 
     @BindingAdapter(value = ["teams", "action"], requireAll = false)
     @JvmStatic
-    fun setTeams(view: RecyclerView, teams: List<ITeamView>, action: ActionClick<ITeamView>) {
+    fun setTeams(view: RecyclerView, teams: List<ITeamView>, action: TeamClick) {
         lateinit var teamViewListAdapter: TeamViewListAdapter
         if (view.adapter == null) {
             teamViewListAdapter = TeamViewHelper.getListAdapter(action)

@@ -1,5 +1,6 @@
 package com.sanmed.footballleagues.model.datasource
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.sanmed.footballleagues.model.conection.RetrofitHelper
 import com.sanmed.footballleagues.model.dto.TeamDTO
@@ -44,6 +45,10 @@ class TheSportsDbDataSource @Inject constructor():IRemoteDataSource{
                 }
             })
         }
+    }
+
+    override fun getTeams(): LiveData<Resource<List<ITeamView>>> {
+        return resultTeams
     }
 
     private fun setTeams(response: Response<TeamsResponse>) {

@@ -8,14 +8,28 @@ import com.sanmed.footballleagues.model.entities.TeamEntity
 import com.sanmed.footballleagues.view.team.ITeamView
 import com.sanmed.footballleagues.view.team.TeamView
 import com.sanmed.footballleagues.view.team.TeamViewHelper
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class LocalDataSource @Inject constructor(teamDao: TeamDao) : ILocalDataSource {
+class LocalDataSource @Inject constructor(private val teamDao: TeamDao) : ILocalDataSource {
     private val allTeams: Flow<List<TeamEntity>> = teamDao.getAll()
 
     override fun getTeams(): LiveData<List<ITeamView>> {
         return Transformations.map(allTeams.asLiveData(), this::parseTeamViewFromTeamEntity)
+    }
+
+    override fun replace(teams: List<ITeamView>) {
+
+        GlobalScope.launch {
+            val replace = mutableListOf<TeamEntity>()
+            teams.forEach {
+                replace.add(TeamViewHelper.parseTeamEntityFromTeamView(it))
+            }
+            teamDao.replace(replace)
+        }
+
     }
 
     private fun parseTeamViewFromTeamEntity(items: List<TeamEntity>?): List<ITeamView> {
@@ -25,4 +39,6 @@ class LocalDataSource @Inject constructor(teamDao: TeamDao) : ILocalDataSource {
         }
         return result;
     }
+
+
 }

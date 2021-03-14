@@ -20,5 +20,9 @@ class TeamViewHelper {
             return TeamView(teamDTO.teamId?:"",teamDTO.name?:"",teamDTO.stadium?:"",teamDTO.badge?:"")
         }
 
+        fun parseTeamEntityFromTeamView(teamView: ITeamView): TeamEntity {
+            return TeamEntity(teamView.getId(),teamView.getName(),teamView.getStadium(),teamView.getBadge())
+        }
+
     }
 }

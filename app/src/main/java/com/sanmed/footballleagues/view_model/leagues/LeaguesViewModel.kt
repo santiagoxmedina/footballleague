@@ -50,7 +50,9 @@ class LeaguesViewModel @Inject constructor(private val mFootBalRepository: IFoot
         return if(result.data!=null){
             result.data
         }else{
-            _message.value = result.message!!
+            result.message?.let {
+                _message.value = it
+            }
             emptyList()
         }
     }
