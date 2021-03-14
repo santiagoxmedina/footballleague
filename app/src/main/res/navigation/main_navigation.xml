@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.sanmed.footballleagues.view.splash.SplashFragment"
+        android:label="splash_fragment"
+        tools:layout="@layout/splash_fragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_leaguesFragment"
+            app:destination="@id/leaguesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/leaguesFragment"
+        android:name="com.sanmed.footballleagues.view.leagues.LeaguesFragment"
+        android:label="LeaguesFragment" >
+        <action
+            android:id="@+id/action_leaguesFragment_to_teamDetailFragment"
+            app:destination="@id/teamDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/teamDetailFragment"
+        android:name="com.sanmed.footballleagues.view.team_detail.TeamDetailFragment"
+        android:label="team_detail_fragment"
+        tools:layout="@layout/team_detail_fragment" >
+        <argument
+            android:name="teamId"
+            app:argType="string" />
+    </fragment>
+</navigation>
