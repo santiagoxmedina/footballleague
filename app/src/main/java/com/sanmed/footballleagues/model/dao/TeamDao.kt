@@ -1,6 +1,7 @@
 package com.sanmed.footballleagues.model.dao
 
 import androidx.room.*
+import com.sanmed.footballleagues.model.entities.TeamDetailEntity
 import com.sanmed.footballleagues.model.entities.TeamEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -13,11 +14,11 @@ interface TeamDao {
     suspend fun deleteAll()
 
     @Transaction
-    suspend fun replace(items: List<TeamEntity>) {
+    suspend fun replace(teams: List<TeamEntity>) {
         deleteAll()
-        insertAll(items)
+        insertAll(teams)
     }
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll( items: List<TeamEntity>)
+    suspend fun insertAll( teams: List<TeamEntity>)
 }

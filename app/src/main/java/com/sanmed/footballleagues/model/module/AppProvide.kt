@@ -3,6 +3,7 @@ package com.sanmed.footballleagues.model.module
 import android.content.Context
 import androidx.room.Room
 import com.sanmed.footballleagues.model.dao.TeamDao
+import com.sanmed.footballleagues.model.dao.TeamDetailDao
 import com.sanmed.footballleagues.model.database.AppDatabase
 import dagger.Module
 import dagger.Provides
@@ -25,7 +26,12 @@ object AppProvide {
     }
 
     @Provides
-    fun provideItemDao(db: AppDatabase): TeamDao {
+    fun provideTeamDao(db: AppDatabase): TeamDao {
         return db.teamDao()
+    }
+
+    @Provides
+    fun provideTeamDetailDao(db: AppDatabase): TeamDetailDao {
+        return db.teamDetailDao()
     }
 }

@@ -1,4 +1,4 @@
-package com.sanmed.footballleagues.model.dto
+package com.sanmed.footballleagues.model.dto.team
 
 import com.google.gson.annotations.SerializedName
 

@@ -8,6 +8,7 @@ import com.sanmed.footballleagues.model.datasource.ILocalDataSource
 import com.sanmed.footballleagues.model.datasource.IRemoteDataSource
 import com.sanmed.footballleagues.model.remote.Resource
 import com.sanmed.footballleagues.view.team.ITeamView
+import com.sanmed.footballleagues.view.team_detail.ITeamDetailView
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -21,6 +22,7 @@ class FootballRepository @Inject constructor(
     private val mRemoteDataSource = remoteDataSource
     private val mLocalDataSource = localDataSource
     private val mTeams = MediatorLiveData<Resource<List<ITeamView>>>()
+    private val mTeamDetail = mRemoteDataSource.getTeamDetail()
     private val mPreload = MediatorLiveData<Resource<Boolean>>()
 
     init {
@@ -54,8 +56,17 @@ class FootballRepository @Inject constructor(
         return mTeams
     }
 
+    override fun getTeamDetail(): LiveData<Resource<ITeamDetailView>> {
+        return mTeamDetail
+    }
+
     override fun loadTeams(leagueName: String) {
         mRemoteDataSource.loadTeams(leagueName);
+    }
+
+    override fun loadTeamDetail(teamId: String) {
+        mRemoteDataSource.loadTeamDetail(teamId)
+
     }
 
 

@@ -4,16 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.asLiveData
 import com.sanmed.footballleagues.model.dao.TeamDao
+import com.sanmed.footballleagues.model.dao.TeamDetailDao
+import com.sanmed.footballleagues.model.entities.TeamDetailEntity
 import com.sanmed.footballleagues.model.entities.TeamEntity
 import com.sanmed.footballleagues.view.team.ITeamView
-import com.sanmed.footballleagues.view.team.TeamView
 import com.sanmed.footballleagues.view.team.TeamViewHelper
+import com.sanmed.footballleagues.view.team_detail.ITeamDetailView
+import com.sanmed.footballleagues.view.team_detail.TeamDetailViewHelper
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class LocalDataSource @Inject constructor(private val teamDao: TeamDao) : ILocalDataSource {
+class LocalDataSource @Inject constructor(private val teamDao: TeamDao,private val teamDetailDao: TeamDetailDao) : ILocalDataSource {
     private val allTeams: Flow<List<TeamEntity>> = teamDao.getAll()
 
     override fun getTeams(): LiveData<List<ITeamView>> {

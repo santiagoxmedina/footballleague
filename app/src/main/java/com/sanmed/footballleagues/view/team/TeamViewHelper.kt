@@ -1,7 +1,6 @@
 package com.sanmed.footballleagues.view.team
 
-import androidx.recyclerview.widget.RecyclerView
-import com.sanmed.footballleagues.model.dto.TeamDTO
+import com.sanmed.footballleagues.model.dto.team.TeamDTO
 import com.sanmed.footballleagues.model.entities.TeamEntity
 import com.sanmed.footballleagues.view.action.ActionClick
 
